@@ -43,8 +43,8 @@ proc sql;
     create table temp as 
 	select a.*, b.ret, b.date as crspdate
 	from sample a left join crsp.msf b
-	on (a.permno = b.permno);
-        *and (a.begret <= b.date <= a.endret) and (a.linkdt <= b.date <= a.extlinkenddt);
+	on (a.permno = b.permno) and (a.begret <= b.date <= a.endret);
+        * and (a.linkdt <= b.date <= a.extlinkenddt);
            *Optinal restriction: to check every CRSP observation that the return date is in the range;
              * Note, the merge could be done without the (a.linkdt <= b.date <= a.linkenddt);
              * restriction. There is a small possibility of merging security prices that;
